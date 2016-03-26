@@ -155,7 +155,8 @@ for turn in range(guesses):
     guess = get_guess(numberOfGuesses, newAvailableLetters, correctGuesses)
     findGuess = newAvailableLetters.find(guess)
 
-    if findGuess not in chosenWord:
+    # If the guess is not in the available letters, then
+    if findGuess < 0:
         ignore_duplicate_guesses(guesses, newAvailableLetters)
         if guessesLeft < 1 and guessedWord != chosenWord:
             print("GAME OVER, Ending game in 5 seconds...")
@@ -163,8 +164,8 @@ for turn in range(guesses):
             time.sleep(5)
             sys.exit(0)
 
-
-    elif guess in chosenWord:
+    # If guess is correct
+    elif chosenWord.find(guess) >= 0:
         duplicate.append(guess)
         allGuesses.append(guess)
         allCorrectGuesses.append(correctGuesses)
@@ -203,7 +204,7 @@ for turn in range(guesses):
 
         print('')
 
-
+    # ADD COMMENT HERE
     else:
         if guessesLeft < 1 and guessedWord != chosenWord:
             print("GAME OVER, Ending game in 5 seconds...")
